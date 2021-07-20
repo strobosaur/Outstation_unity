@@ -11,6 +11,11 @@ namespace Game.Controls
     {
         Gamepad gamepad = Gamepad.current;
 
+        // CAMERA TARGET
+        public GameObject camTarget;
+        public float camSpd = 0.04f;
+        public float camDist = 0.5f;
+
         // PLAYER VARIABLES
 
         public float moveSpd = 2.5f;
@@ -25,7 +30,7 @@ namespace Game.Controls
         public GameObject crossHair;
         private Vector2 targetPos;
         private Vector2 currentPos;
-        public float crossDistance = 7f;
+        public float crossDistance = 9f;
         public float crossSpd;
         private SpriteRenderer sprite; 
         
@@ -38,6 +43,7 @@ namespace Game.Controls
         {
             Move();
             MoveCrosshair();
+            MoveCamTarget();
         }
 
         void ProcessInput()
@@ -112,6 +118,18 @@ namespace Game.Controls
             float opacity = (Vector3.Distance(crossHair.transform.position, rb.transform.position) - 2) / 5;
             sprite = crossHair.GetComponent<SpriteRenderer>();
             sprite.color = new Color(1,1,1,opacity);            
+        }
+
+        private void MoveCamTarget()
+        {
+            Vector3 target = Vector3.Lerp(rb.position, crossHair.transform.position, camDist);
+
+            if(Vector3.Distance(camTarget.transform.position, target) > (4 / 16))
+            {
+                camTarget.transform.position = Vector3.Lerp(camTarget.transform.position, target, camSpd);
+            } else {
+                camTarget.transform.position = target;
+            }
         }
     }
 }
