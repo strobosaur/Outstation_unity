@@ -56,7 +56,8 @@ namespace Game.Controls
             Vector3 LSTinp = gamepad.leftStick.ReadValue();
 
             moveDir = new Vector2(LSTinp.x, LSTinp.y);
-            moveLen = Mathf.Clamp(moveDir.magnitude, 0.0f, 1.0f);
+            moveDir = Vector2.ClampMagnitude(moveDir, 1.0f);
+            moveLen = moveDir.magnitude;
 
             /* if(LSTinp.x != 0)
             {
@@ -73,8 +74,9 @@ namespace Game.Controls
         void Move()
         {
             //moveDir *= moveLen;
-            movement.x = Functions.Approach(movement.x, moveDir.x, Globals.G_INERTIA);
-            movement.y = Functions.Approach(movement.y, moveDir.y, Globals.G_INERTIA);
+            //movement.x = Functions.Approach(movement.x, moveDir.x, Globals.G_INERTIA);
+            //movement.y = Functions.Approach(movement.y, moveDir.y, Globals.G_INERTIA);
+            movement = Vector2.Lerp(movement, moveDir, Globals.G_INERTIA);
             rb.velocity = movement * moveSpd;            
             moveMag = movement.magnitude;
             
@@ -122,8 +124,10 @@ namespace Game.Controls
 
         private void MoveCamTarget()
         {
+            // FIND MIDPOINT BETWEEN PLAYER AND CROSSHAIR
             Vector3 target = Vector3.Lerp(rb.position, crossHair.transform.position, camDist);
 
+            // IF DISTANCE TOO SMALL, JUST SET POSITION TO TARGET
             if(Vector3.Distance(camTarget.transform.position, target) > (4 / 16))
             {
                 camTarget.transform.position = Vector3.Lerp(camTarget.transform.position, target, camSpd);
