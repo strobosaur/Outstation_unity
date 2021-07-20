@@ -113,7 +113,8 @@ namespace Game.Controls
             // SMOOTH CROSSHAIR MOVEMENT
             if (Mathf.CeilToInt(targetDist * 16) > 2)
             {
-                crossHair.transform.position = Vector2.MoveTowards(crossHair.transform.position, targetPos, (0.75f));
+                //crossHair.transform.position = Vector2.MoveTowards(crossHair.transform.position, targetPos, (0.75f));
+                crossHair.transform.position = Vector2.Lerp(crossHair.transform.position, targetPos, (0.25f));
             }
 
             // ADJUST CROSSHAIR OPACITY BASED ON DISTANCE TO PLAYER
