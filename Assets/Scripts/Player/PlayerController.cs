@@ -43,6 +43,10 @@ namespace Game.Controls
         {
             Move();
             MoveCrosshair();
+        }
+
+        void LateUpdate()
+        {
             MoveCamTarget();
         }
 
@@ -58,24 +62,10 @@ namespace Game.Controls
             moveDir = new Vector2(LSTinp.x, LSTinp.y);
             moveDir = Vector2.ClampMagnitude(moveDir, 1.0f);
             moveLen = moveDir.magnitude;
-
-            /* if(LSTinp.x != 0)
-            {
-                Debug.Log("LSX: " + LSTinp.x);
-                Debug.Log("#LSX: " + moveDir.x);
-            }
-            if(LSTinp.y != 0)
-            {
-                Debug.Log("LSY: " + LSTinp.y);
-                Debug.Log("#LSY: " + moveDir.y);
-            } */
         }
 
         void Move()
         {
-            //moveDir *= moveLen;
-            //movement.x = Functions.Approach(movement.x, moveDir.x, Globals.G_INERTIA);
-            //movement.y = Functions.Approach(movement.y, moveDir.y, Globals.G_INERTIA);
             movement = Vector2.Lerp(movement, moveDir, Globals.G_INERTIA);
             rb.velocity = movement * moveSpd;            
             moveMag = movement.magnitude;

@@ -37,5 +37,15 @@ namespace Practical
             dir = dir.normalized * len;
             return dir.y;
         }
+
+        public static float GetSeconds(int secs)
+        {
+            return secs * 60f;
+        }
+
+        public static float GetSeconds(float secs)
+        {
+            return secs * 60f;
+        }
     }
 }

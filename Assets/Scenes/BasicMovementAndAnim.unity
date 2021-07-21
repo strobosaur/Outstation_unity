@@ -464,7 +464,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af038156f50370043bf8d9b93dd9d8d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileList: []
+  PropAnimationList:
+  - {fileID: 7400000, guid: f437557af2da9f84eb155ba68ef59246, type: 2}
+  - {fileID: 7400000, guid: aef91ae4c25e9b54ba5ac7afe358303d, type: 2}
+  - {fileID: 7400000, guid: c5487f57a9d656f4eb61e86e5f05cfd3, type: 2}
+  - {fileID: 7400000, guid: c8201805e1901d24bb867e4188a8a66e, type: 2}
   DefaultTileImg: {fileID: 3173181204722594108, guid: d56b49083d5bc604a84fd945c626de39,
     type: 3}
   TileImgList:
@@ -485,9 +489,13 @@ MonoBehaviour:
   - {fileID: -4230261517966309645, guid: d56b49083d5bc604a84fd945c626de39, type: 3}
   TilePrefab: {fileID: 4408657201030206720, guid: 84ed7bab707f2b4448e2bba7ab592a73,
     type: 3}
+  PropPrefab: {fileID: 8032071541910705214, guid: a791d74f1994a2243a84122996922d3d,
+    type: 3}
   MapSize: 64
   TileSize: 0.0625
-  DecoChance: 0.05
+  DecoChance: 0.075
+  PropChance: 0.05
+  PropDist: 4
 --- !u!4 &734570359
 Transform:
   m_ObjectHideFlags: 0
@@ -597,7 +605,7 @@ SpriteRenderer:
   m_Size: {x: 0.9375, y: 0.3125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
 --- !u!4 &806143012
@@ -678,7 +686,7 @@ SpriteRenderer:
   m_Size: {x: 0.9375, y: 0.3125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
 --- !u!4 &1403855113
@@ -759,7 +767,7 @@ SpriteRenderer:
   m_Size: {x: 0.9375, y: 0.3125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
 --- !u!4 &1514671911
@@ -921,7 +929,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
 --- !u!4 &1814967001

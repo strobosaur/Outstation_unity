@@ -7,7 +7,7 @@ public class CameraControl : MonoBehaviour
     public Transform target;
     public float smoothing = 0.5f;
 
-    void FixedUpdate()
+    void LateUpdate()
     {
         if(transform.position != target.position)
         {
