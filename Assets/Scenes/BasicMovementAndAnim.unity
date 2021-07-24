@@ -242,7 +242,7 @@ MonoBehaviour:
   newPos: {x: 0, y: 0, z: 0}
   smoothing: 0.5
   camTargetDist: 0
-  playercamTargetDist: 0
+  playerTargetDist: 0
   camPlayerDist: 0
   player: {fileID: 0}
   playerRb: {fileID: 0}
@@ -990,8 +990,11 @@ MonoBehaviour:
   RSinp: {x: 0, y: 0}
   RSdir: {x: 0, y: 0}
   camTarget: {fileID: 2042760642}
-  camSpd: 0.04
-  camDist: 0.5
+  camTargetSpd: 0
+  camTargetSpdAim: 0.075
+  camTargetSpdMove: 0.025
+  camTargetDistAim: 0.5
+  camTargetDistMove: 2.5
   moveSpd: 2.5
   moveMag: 0
   moveLen: 0

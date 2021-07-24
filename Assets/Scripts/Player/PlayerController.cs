@@ -20,8 +20,11 @@ namespace Game.Controls
 
         // CAMERA TARGET
         public GameObject camTarget;
-        public float camSpd = 0.075f;
-        public float camDist = 0.5f;
+        public float camTargetSpd;
+        public float camTargetSpdAim = 0.075f;
+        public float camTargetSpdMove = 0.025f;
+        public float camTargetDistAim = 0.5f;
+        public float camTargetDistMove = 3.0f;
 
         // PLAYER VARIABLES
         public float moveSpd = 2.5f;
@@ -100,12 +103,6 @@ namespace Game.Controls
         // MOVE PLAYER
         void Move()
         {
-            /*moveToDir = Vector2.ClampMagnitude(LSinp, 1.0f);
-            if (moveToDir.magnitude < LSDeadzone)
-            {
-                moveToDir = new Vector2(0f, 0f);
-            }*/
-
             moveLen = LSinp.magnitude;
             moveTo = LSinp * moveSpd;
             movement = Vector2.Lerp(movement, moveTo, Globals.G_INERTIA);
@@ -121,8 +118,8 @@ namespace Game.Controls
             }
 
             // ANIMATOR
-            animator.SetFloat("horizontal", moveDir.x);
-            animator.SetFloat("vertical", moveDir.y);
+            animator.SetFloat("horizontal", faceDir.x);
+            animator.SetFloat("vertical", faceDir.y);
             animator.SetFloat("magnitude", moveMag);
             animator.speed = moveMag * animSpdFactor;
         }
@@ -134,7 +131,6 @@ namespace Game.Controls
             if(RSinp.magnitude > RSDeadzone)
             {
                 // CREATE NEW TARGET
-                //Vector2 crossDir = new Vector2(RSinp.x, RSinp.y);
                 crossTargetPos = new Vector2(rb.position.x, rb.position.y) + (crossDistance * RSinp);
 
                 // PLAYER FACING
@@ -155,7 +151,6 @@ namespace Game.Controls
             // SMOOTH CROSSHAIR MOVEMENT
             if (Mathf.CeilToInt(crossTargetDist * 16) > 2)
             {
-                //crossHair.transform.position = Vector2.MoveTowards(crossHair.transform.position, crossTargetPos, (0.75f));
                 crossHair.transform.position = Vector2.Lerp(crossHair.transform.position, crossTargetPos, crossSpd);
             }
 
@@ -165,15 +160,30 @@ namespace Game.Controls
             sprite.color = new Color(1,1,1,crossOpacity);            
         }
 
+        // MOVE CAMERA TARGET
         private void MoveCamTarget()
         {
-            // FIND MIDPOINT BETWEEN PLAYER AND CROSSHAIR
-            Vector3 target = Vector3.Lerp(rb.position, crossHair.transform.position, camDist);
+            Vector3 target;
+            // IF PLAYER IS AIMING
+            if(RSinp.magnitude > 0)
+            {
+                // FIND MIDPOINT BETWEEN PLAYER AND CROSSHAIR
+                target = Vector3.Lerp(rb.position, crossHair.transform.position, camTargetDistAim);
+                camTargetSpd = camTargetSpdAim;
+            // IF PLAYER IS MOVING
+            } else if (LSinp.magnitude > 0) {
+                // FIND POINT IN FRONT OF PLAYER
+                target = rb.position + (LSinp * camTargetDistMove);
+                camTargetSpd = camTargetSpdMove;
+            } else {
+                // ELSE RETURN TO PLAYER
+                target = rb.position;
+            }
 
             // IF DISTANCE TOO SMALL, JUST SET POSITION TO TARGET
-            if(Vector3.Distance(camTarget.transform.position, target) > (4 / 16))
+            if((Vector3.Distance(camTarget.transform.position, target) * 16) > 1)
             {
-                camTarget.transform.position = Vector3.Lerp(camTarget.transform.position, target, camSpd);
+                camTarget.transform.position = Vector3.Lerp(camTarget.transform.position, target, camTargetSpd);
             } else {
                 camTarget.transform.position = target;
             }
