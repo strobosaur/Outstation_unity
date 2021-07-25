@@ -495,7 +495,7 @@ MonoBehaviour:
   - {fileID: -4230261517966309645, guid: d56b49083d5bc604a84fd945c626de39, type: 3}
   TilePrefab: {fileID: 4408657201030206720, guid: 84ed7bab707f2b4448e2bba7ab592a73,
     type: 3}
-  PropPrefab: {fileID: 8032071541910705214, guid: a791d74f1994a2243a84122996922d3d,
+  PropPrefab: {fileID: 4952023200561745336, guid: ed326f4fb7187bc49a5e004fef6b663f,
     type: 3}
   MapSize: 64
   TileSize: 0.0625

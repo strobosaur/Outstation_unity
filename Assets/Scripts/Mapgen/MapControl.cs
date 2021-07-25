@@ -32,7 +32,7 @@ public class MapControl : MonoBehaviour
         
     }
 
-    public void PrepareMap()
+    void PrepareMap()
     {
         TileMap = new GameObject[MapSize,MapSize];
         TileList = new List<GameObject>();
@@ -59,7 +59,7 @@ public class MapControl : MonoBehaviour
         }
     }
 
-    public void PrepareProps()
+    void PrepareProps()
     {
         PropList = new List<GameObject>();
 
@@ -75,9 +75,10 @@ public class MapControl : MonoBehaviour
                     var p = Instantiate(PropPrefab, new Vector3(x + position.x - offset, y + position.y - offset, 0.0f), Quaternion.identity);
 
                     var pAnim = p.GetComponent<Animator>();
-                    var rndAnim = Random.Range(0,5);
+                    //var rndAnim = Random.Range(0,5);
+                    pAnim.SetInteger("clip", Random.Range(0,5));
 
-                    switch (rndAnim)
+                    /*switch (rndAnim)
                     {
                         case 0:                        
                         pAnim.SetInteger("anim01", 1);
@@ -97,7 +98,7 @@ public class MapControl : MonoBehaviour
 
                         default:
                         break;
-                    }
+                    }*/
                     
                     PropList.Add(p);
                 }
