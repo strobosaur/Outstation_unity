@@ -1006,6 +1006,7 @@ MonoBehaviour:
   animator: {fileID: 2035490996}
   animSpdFactor: 0.5
   rb: {fileID: 2035490998}
+  timerDust: 0
   crossHair: {fileID: 1646157347}
   crossTargetPos: {x: 0, y: 0}
   crossCurrentPos: {x: 0, y: 0}

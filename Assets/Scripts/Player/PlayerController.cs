@@ -24,7 +24,7 @@ namespace Game.Controls
         public float camTargetSpdAim = 0.075f;
         public float camTargetSpdMove = 0.025f;
         public float camTargetDistAim = 0.5f;
-        public float camTargetDistMove = 3.0f;
+        public float camTargetDistMove = 2.5f;
 
         // PLAYER VARIABLES
         public float moveSpd = 2.5f;
@@ -41,6 +41,9 @@ namespace Game.Controls
 
         public Rigidbody2D rb;
 
+        // PLAYER TIMERS
+        public float timerDust = 0;        
+
         // CROSSHAIR VARIABLES        
         public GameObject crossHair;
         public Vector2 crossTargetPos;
@@ -55,6 +58,7 @@ namespace Game.Controls
         void Update()
         {
             ProcessInput();
+            UpdateTimers();
         }
 
         // FIXED UPDATE
@@ -111,6 +115,11 @@ namespace Game.Controls
                 rb.velocity = movement;
                 moveDir = movement.normalized;
                 moveMag = movement.magnitude;
+
+                // MOVE DUST
+                /*if (moveMag > 0.1){
+                    MoveDust(4f + (moveMag * 1.25f), moveMag * 0.1f);
+                }*/
             } else {
                 movement = new Vector2(0f, 0f);
                 rb.velocity = new Vector2(0f, 0f);
@@ -125,7 +134,7 @@ namespace Game.Controls
         }
 
         // MOVE CROSSHAIR
-        private void MoveCrosshair()
+        void MoveCrosshair()
         {
             // CHECK FOR RIGHT STICK ACTION
             if(RSinp.magnitude > RSDeadzone)
@@ -161,7 +170,7 @@ namespace Game.Controls
         }
 
         // MOVE CAMERA TARGET
-        private void MoveCamTarget()
+        void MoveCamTarget()
         {
             Vector3 target;
             // IF PLAYER IS AIMING
@@ -187,6 +196,34 @@ namespace Game.Controls
             } else {
                 camTarget.transform.position = target;
             }
+        }
+
+        // MOVE DUST
+        void MoveDust(float radius, float freq, GameObject fxPuff)
+        {
+            if(timerDust <= 0.001)
+            {
+                Vector2 center = new Vector2(rb.position.x, rb.position.y) + ((moveDir * -1) * radius * 1.75f);
+
+                int _rpt = 2;
+                if(Random.Range(0f,1f) < (freq * 0.35)) _rpt++;
+                if(Random.Range(0f,1f) < (freq * 0.2)) _rpt++;
+
+                do {
+                    Vector2 fxPos = Random.insideUnitCircle * radius;                    
+                    Instantiate(fxPuff, center + fxPos, Quaternion.identity);
+                    _rpt--;
+                } while (_rpt > 0);        
+        
+                // UPDATE ALARM
+                timerDust = 3f + ((1.5f - freq) * Random.Range(0,6)) + ((1.25f - freq) * Random.Range(0,6));                
+            }
+        }
+
+        // UPDATE TIMERS
+        void UpdateTimers()
+        {
+            if(timerDust > 0) timerDust -= Time.deltaTime;
         }
     }
 }

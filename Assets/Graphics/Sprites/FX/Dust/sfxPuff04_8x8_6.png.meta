@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: 3cc4a7b4fae4c9c489b6ba60adcb28e1
+guid: b9036e3cea8a97e499a8e8cb18418586
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6328711486609246273
-    second: sfxPuff01b_strip6_0
+      213: -7377679431306471228
+    second: sfxPuff04_8x8_6_0
   - first:
-      213: -8221056041671311182
-    second: sfxPuff01b_strip6_1
+      213: 4107454767134863170
+    second: sfxPuff04_8x8_6_1
   - first:
-      213: -208622843278129307
-    second: sfxPuff01b_strip6_2
+      213: -261044130977424204
+    second: sfxPuff04_8x8_6_2
   - first:
-      213: 2345727710494590531
-    second: sfxPuff01b_strip6_3
+      213: 595544312704085381
+    second: sfxPuff04_8x8_6_3
   - first:
-      213: 4203369759688594855
-    second: sfxPuff01b_strip6_4
+      213: -1270857293006793837
+    second: sfxPuff04_8x8_6_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -102,7 +102,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sfxPuff01b_strip6_0
+      name: sfxPuff04_8x8_6_0
       rect:
         serializedVersion: 2
         x: 0
@@ -116,14 +116,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 148474de09914d750800000000000000
-      internalID: 6328711486609246273
+      spriteID: 4c8954655a73d9990800000000000000
+      internalID: -7377679431306471228
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sfxPuff01b_strip6_1
+      name: sfxPuff04_8x8_6_1
       rect:
         serializedVersion: 2
         x: 8
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b04a9d4611f8ed80800000000000000
-      internalID: -8221056041671311182
+      spriteID: 24fee06395c900930800000000000000
+      internalID: 4107454767134863170
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sfxPuff01b_strip6_2
+      name: sfxPuff04_8x8_6_2
       rect:
         serializedVersion: 2
         x: 16
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 567006e11a2da1df0800000000000000
-      internalID: -208622843278129307
+      spriteID: 4bcd366feb5906cf0800000000000000
+      internalID: -261044130977424204
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sfxPuff01b_strip6_3
+      name: sfxPuff04_8x8_6_3
       rect:
         serializedVersion: 2
         x: 24
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34602dbace2bd8020800000000000000
-      internalID: 2345727710494590531
+      spriteID: 58d2bb6a56cc34800800000000000000
+      internalID: 595544312704085381
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sfxPuff01b_strip6_4
+      name: sfxPuff04_8x8_6_4
       rect:
         serializedVersion: 2
         x: 32
@@ -200,8 +200,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a59bd9a68e555a30800000000000000
-      internalID: 4203369759688594855
+      spriteID: 3939d1a76020d5ee0800000000000000
+      internalID: -1270857293006793837
       vertices: []
       indices: 
       edges: []
