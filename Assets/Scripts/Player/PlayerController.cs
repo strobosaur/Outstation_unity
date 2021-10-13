@@ -30,6 +30,7 @@ namespace Game.Controls
         public float moveSpd = 2.5f;
         public float moveMag;
         public float moveLen;
+        public Vector2 posXY;
         public Vector2 movement;
         public Vector2 moveTo;
         public Vector2 moveToDir;
@@ -37,12 +38,15 @@ namespace Game.Controls
         public Vector2 faceDir;
 
         public Animator animator;
-        public float animSpdFactor = 0.5f;
+        private float animSpdFactor = 0.35f;
 
         public Rigidbody2D rb;
 
+        // FX VARIABLES
+        public GameObject fxDust;
+
         // PLAYER TIMERS
-        public float timerDust = 0;        
+        public int timerDust = 0;        
 
         // CROSSHAIR VARIABLES        
         public GameObject crossHair;
@@ -64,6 +68,7 @@ namespace Game.Controls
         // FIXED UPDATE
         void FixedUpdate() 
         {
+            posXY = UpdatePosXY();
             Move();
             MoveCrosshair();
             MoveCamTarget();
@@ -117,9 +122,12 @@ namespace Game.Controls
                 moveMag = movement.magnitude;
 
                 // MOVE DUST
-                /*if (moveMag > 0.1){
-                    MoveDust(4f + (moveMag * 1.25f), moveMag * 0.1f);
-                }*/
+                // if ((moveMag > 0.1) && (timerDust < 0.0001)){
+                //     timerDust = MoveDust2(posXY, fxDust);
+                // }
+                if ((moveMag > 2.0) && (timerDust < 1)){
+                    timerDust = MoveDust(3f + (moveMag * 0.75f), moveMag * 0.1f, fxDust);
+                }
             } else {
                 movement = new Vector2(0f, 0f);
                 rb.velocity = new Vector2(0f, 0f);
@@ -158,7 +166,7 @@ namespace Game.Controls
                 crossTargetPos);
 
             // SMOOTH CROSSHAIR MOVEMENT
-            if (Mathf.CeilToInt(crossTargetDist * 16) > 2)
+            if (Mathf.CeilToInt(crossTargetDist * Globals.G_CELLSIZE) > 2)
             {
                 crossHair.transform.position = Vector2.Lerp(crossHair.transform.position, crossTargetPos, crossSpd);
             }
@@ -190,7 +198,7 @@ namespace Game.Controls
             }
 
             // IF DISTANCE TOO SMALL, JUST SET POSITION TO TARGET
-            if((Vector3.Distance(camTarget.transform.position, target) * 16) > 1)
+            if((Vector3.Distance(camTarget.transform.position, target) * Globals.G_CELLSIZE) > 1)
             {
                 camTarget.transform.position = Vector3.Lerp(camTarget.transform.position, target, camTargetSpd);
             } else {
@@ -199,31 +207,34 @@ namespace Game.Controls
         }
 
         // MOVE DUST
-        void MoveDust(float radius, float freq, GameObject fxPuff)
+        int MoveDust(float radius, float freq, GameObject fxPuff)
         {
-            if(timerDust <= 0.001)
-            {
-                Vector2 center = new Vector2(rb.position.x, rb.position.y) + ((moveDir * -1) * radius * 1.75f);
+            Vector2 center = new Vector2(rb.position.x, rb.position.y) + (((moveDir * -1) * radius * 2.0f) / Globals.G_CELLSIZE);
 
-                int _rpt = 2;
-                if(Random.Range(0f,1f) < (freq * 0.35)) _rpt++;
-                if(Random.Range(0f,1f) < (freq * 0.2)) _rpt++;
+            int _rpt = 2;
+            if(Random.Range(0f,1f) < (freq * 0.35)) _rpt++;
+            if(Random.Range(0f,1f) < (freq * 0.2)) _rpt++;
 
-                do {
-                    Vector2 fxPos = Random.insideUnitCircle * radius;                    
-                    Instantiate(fxPuff, center + fxPos, Quaternion.identity);
-                    _rpt--;
-                } while (_rpt > 0);        
-        
-                // UPDATE ALARM
-                timerDust = 3f + ((1.5f - freq) * Random.Range(0,6)) + ((1.25f - freq) * Random.Range(0,6));                
-            }
+            do {
+                Vector2 fxPos = (Random.insideUnitCircle * radius) / Globals.G_CELLSIZE;                    
+                Instantiate(fxPuff, center + fxPos, Quaternion.identity);
+                _rpt--;
+            } while (_rpt > 0);        
+    
+            // UPDATE ALARM
+            return Mathf.RoundToInt(20f + ((1.5f * freq) * Random.Range(0,11)) + ((1.25f * freq) * Random.Range(0,11)));
         }
 
         // UPDATE TIMERS
         void UpdateTimers()
         {
-            if(timerDust > 0) timerDust -= Time.deltaTime;
+            //if(timerDust > 0) timerDust -= (int)(1 * Time.deltaTime);
+            if(timerDust > 0) timerDust--;
+        }
+
+        Vector2 UpdatePosXY()
+        {
+            return new Vector2(rb.position.x, rb.position.y);
         }
     }
 }

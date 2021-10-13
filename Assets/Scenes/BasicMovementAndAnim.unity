@@ -998,14 +998,15 @@ MonoBehaviour:
   moveSpd: 2.5
   moveMag: 0
   moveLen: 0
+  posXY: {x: 0, y: 0}
   movement: {x: 0, y: 0}
   moveTo: {x: 0, y: 0}
   moveToDir: {x: 0, y: 0}
   moveDir: {x: 0, y: 0}
   faceDir: {x: 0, y: 0}
   animator: {fileID: 2035490996}
-  animSpdFactor: 0.5
   rb: {fileID: 2035490998}
+  fxDust: {fileID: 9184638480716081401, guid: 526fc42b3c8008745a2471dead7d27bd, type: 3}
   timerDust: 0
   crossHair: {fileID: 1646157347}
   crossTargetPos: {x: 0, y: 0}

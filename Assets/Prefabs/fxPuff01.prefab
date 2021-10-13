@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 442521687717518699}
+  - component: {fileID: 2117298595659063612}
   - component: {fileID: 3266635264208776900}
   - component: {fileID: 168771150525688083}
-  - component: {fileID: 2117298595659063612}
   m_Layer: 0
   m_Name: fxPuff01
   m_TagString: Untagged
@@ -33,6 +33,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2117298595659063612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9184638480716081401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8791f44ff578a3349aba9fc758ba4a2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ymod: 0
+  spdMod: 0
+  ground: 0
+  clip: 0
 --- !u!95 &3266635264208776900
 Animator:
   serializedVersion: 3
@@ -102,19 +118,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!114 &2117298595659063612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9184638480716081401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8791f44ff578a3349aba9fc758ba4a2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ymod: 0
-  spdMod: 0
-  ground: 0
-  clip: 0

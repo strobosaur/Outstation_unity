@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using GLOBALS;
 
 public class MapControl : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class MapControl : MonoBehaviour
     public GameObject TilePrefab;
     public GameObject PropPrefab;
     public int MapSize;
-    public float TileSize = 1f / 16f;
+    public float TileSize = 1f / Globals.G_CELLSIZE;
     public float DecoChance;
     public float PropChance;
     public float PropDist;
@@ -75,30 +76,7 @@ public class MapControl : MonoBehaviour
                     var p = Instantiate(PropPrefab, new Vector3(x + position.x - offset, y + position.y - offset, 0.0f), Quaternion.identity);
 
                     var pAnim = p.GetComponent<Animator>();
-                    //var rndAnim = Random.Range(0,5);
                     pAnim.SetInteger("clip", Random.Range(0,5));
-
-                    /*switch (rndAnim)
-                    {
-                        case 0:                        
-                        pAnim.SetInteger("anim01", 1);
-                        break;
-
-                        case 1:                        
-                        pAnim.SetInteger("anim02", 1);
-                        break;
-
-                        case 2:                        
-                        pAnim.SetInteger("anim03", 1);
-                        break;
-
-                        case 3:                        
-                        pAnim.SetInteger("anim04", 1);
-                        break;
-
-                        default:
-                        break;
-                    }*/
                     
                     PropList.Add(p);
                 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using GLOBALS;
 
 public class fxPuffControl : MonoBehaviour
 {
@@ -18,13 +19,13 @@ public class fxPuffControl : MonoBehaviour
     {
         _animator = gameObject.GetComponent<Animator>();
         _renderer = gameObject.GetComponent<SpriteRenderer>();
-        ymod = (Random.Range(1,5) * 0.0625f) / 16;
+        ymod = (Random.Range(1,4) / Globals.G_CELLSIZE) / 24f;
         spdMod = Random.Range(0.075f, 0.25f);
-        ground = transform.position.y + (2 / 16);
+        ground = transform.position.y + (2 / Globals.G_CELLSIZE);
         _renderer.flipX = Convert.ToBoolean(Random.Range(0,2));
         clip = Random.Range(0,3);        
         _animator.SetInteger("clip", clip);
-        _animator.speed = 1 * spdMod;
+        _animator.speed = (0.35f + spdMod);
     }
 
     // Update is called once per frame
