@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 727d9e32e7edd424a97031c8283d5f43
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - camTarget: {instanceID: 0}
+  - animator: {instanceID: 0}
+  - rb: {instanceID: 0}
+  - fxDust: {fileID: 9184638480716081401, guid: 526fc42b3c8008745a2471dead7d27bd,
+      type: 3}
+  - crossHair: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
