@@ -122,9 +122,6 @@ namespace Game.Controls
                 moveMag = movement.magnitude;
 
                 // MOVE DUST
-                // if ((moveMag > 0.1) && (timerDust < 0.0001)){
-                //     timerDust = MoveDust2(posXY, fxDust);
-                // }
                 if ((moveMag > 2.0) && (timerDust < 1)){
                     timerDust = MoveDust(3f + (moveMag * 0.75f), moveMag * 0.1f, fxDust);
                 }
